@@ -10,6 +10,9 @@ import { HomeComponent } from './components/home/home.component';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CarouselModule } from 'primeng/carousel';
+import { SidebarModule } from 'primeng/sidebar';
+import { SkeletonModule } from './shared/skeleton/skeleton.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     FormsModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
+    CarouselModule,
+    SidebarModule,
+    SkeletonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

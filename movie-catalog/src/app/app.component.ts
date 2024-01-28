@@ -18,10 +18,11 @@ export class AppComponent {
 
 
   constructor(private router: Router) {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationStart || event instanceof NavigationEnd),
-      map(event => event instanceof NavigationStart)
-    ).subscribe(isNavigationStart => {
+    this.router.events
+    .pipe(
+      filter((event: any) => event instanceof NavigationStart || event instanceof NavigationEnd),
+      map((event: any) => event instanceof NavigationStart))
+    .subscribe(isNavigationStart => {
       if (isNavigationStart) {
         this.loading = true;
       } else {
