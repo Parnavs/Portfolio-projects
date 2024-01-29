@@ -7,6 +7,10 @@ const routes: Routes = [
     path: '',
     component: HomeComponent,
   },
+  {
+    path: 'genres/:id/:name',
+    loadChildren: () => import('./components/genre/genre.module').then(mod => mod.GenreModule)
+  },
 ];
 
 @NgModule({

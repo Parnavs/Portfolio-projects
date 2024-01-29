@@ -47,7 +47,7 @@ export class MoviesService {
     return this.http.get(`${this.baseUrl}genre/movie/list?api_key=${this.apiKey}&language=${this.language}`);
   }
 
-  public getMoviesByGenre(id: string): Observable<any> {
+  public getMoviesByGenre(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}genre/${id}/movies?api_key=${this.apiKey}`);
   }
 
@@ -55,35 +55,35 @@ export class MoviesService {
     return this.http.get(`${this.baseUrl}movie/${id}?api_key=${this.apiKey}`);
   }
 
-  public getMovieReviews(id: string): Observable<any> {
+  public getMovieReviews(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}movie/${id}/reviews?api_key=${this.apiKey}`);
   }
 
-  public getMovieCredits(id: string): Observable<any> {
+  public getMovieCredits(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}movie/${id}/credits?api_key=${this.apiKey}`);
   }
 
-  public getBackdropsImages(id: string): Observable<any> {
+  public getBackdropsImages(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}movie/${id}/images?api_key=${this.apiKey}`);
   }
 
-  public getMovieVideos(id: string): Observable<any> {
+  public getMovieVideos(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}movie/${id}/videos?api_key=${this.apiKey}`);
   }
 
-  public getRecomendMovies(id: string): Observable<any> {
+  public getRecomendMovies(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}movie/${id}/recommendations?api_key=${this.apiKey}`);
   }
 
-  public getPersonDetail(id: string): Observable<any> {
+  public getPersonDetail(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}person/${id}?api_key=${this.apiKey}`);
   }
 
-  public getPersonExternalData(id: string) {
+  public getPersonExternalData(id: number) {
     return this.http.get(`${this.baseUrl}person/${id}/external_ids?api_key=${this.apiKey}`);
   }
 
-  public getPersonCast(id: string): Observable<any> {
+  public getPersonCast(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}person/${id}/movie_credits?api_key=${this.apiKey}`);
   }
 
