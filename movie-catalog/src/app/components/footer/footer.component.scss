@@ -1,0 +1,19 @@
+.footer {
+    padding: 1rem 0rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  
+    p {
+        font-size: 10px;
+        line-height: 1;
+    }
+    .list-inline {
+      li {
+        a {
+          width: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+  }

@@ -17,12 +17,14 @@ import { SkeletonModule } from './shared/skeleton/skeleton.module';
 import { PipeModule } from './pipe/pipe.module';
 import { HeaderComponent } from './components/header/header.component';
 import { CarouselListingComponent } from './components/home/carousel-listing/carousel-listing.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
+    FooterComponent,
     CarouselListingComponent
   ],
   imports: [
