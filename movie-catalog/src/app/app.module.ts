@@ -18,6 +18,7 @@ import { PipeModule } from './pipe/pipe.module';
 import { HeaderComponent } from './components/header/header.component';
 import { CarouselListingComponent } from './components/home/carousel-listing/carousel-listing.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { SliderComponent } from './components/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,13 @@ import { FooterComponent } from './components/footer/footer.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    CarouselListingComponent
+    CarouselListingComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     MatProgressSpinnerModule,
