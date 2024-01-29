@@ -13,6 +13,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CarouselModule } from 'primeng/carousel';
 import { SidebarModule } from 'primeng/sidebar';
 import { SkeletonModule } from './shared/skeleton/skeleton.module';
+import { PipeModule } from './pipe/pipe.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SkeletonModule } from './shared/skeleton/skeleton.module';
     MatProgressBarModule,
     CarouselModule,
     SidebarModule,
-    SkeletonModule
+    SkeletonModule,
+    PipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
