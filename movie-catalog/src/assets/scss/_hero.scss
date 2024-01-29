@@ -105,7 +105,7 @@
   max-width: none;
   height: 100%;
 
-  @media (max-width: $breakpoint-medium - 1) {
+  @media (max-width: ($breakpoint-medium - 1)) {
     width: 100%;
     object-fit: cover;
   }
@@ -206,7 +206,7 @@
   color: $base-font-color;
   font-family: $font-family-serif-dosis;
 
-  @media (max-width: $breakpoint-small - 1) {
+  @media (max-width: ($breakpoint-small - 1)) {
     display: none;
   }
 
@@ -218,7 +218,7 @@
 .trailer {
   margin-top: 3rem;
 
-  @media (max-width: $breakpoint-medium - 1) {
+  @media (max-width: ($breakpoint-medium - 1)) {
     display: none;
   }
 
