@@ -12,13 +12,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CarouselModule } from 'primeng/carousel';
 import { SidebarModule } from 'primeng/sidebar';
+import { MenubarModule } from 'primeng/menubar';
 import { SkeletonModule } from './shared/skeleton/skeleton.module';
 import { PipeModule } from './pipe/pipe.module';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { PipeModule } from './pipe/pipe.module';
     CarouselModule,
     SidebarModule,
     SkeletonModule,
-    PipeModule
+    PipeModule,
+    MenubarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

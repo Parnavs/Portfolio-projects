@@ -1,4 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@import '../src/assets/scss/variables';
+@import '../src/assets/scss/listing';
+@import '../src/assets/scss/base';
+@import '../src/assets/scss/hero';
+@import '../src/assets/scss/overview';
+@import '../src/assets/scss/image';
+@import 'primeicons/primeicons.css';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
