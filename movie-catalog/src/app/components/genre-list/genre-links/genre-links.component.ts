@@ -1,17 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ContentCategory } from 'src/app/enum/content-category.enum';
 
 @Component({
   selector: 'app-genre-links',
   templateUrl: './genre-links.component.html',
   styleUrl: './genre-links.component.scss'
 })
-export class GenreLinksComponent {
-  @Input() title!: string;
+export class GenreLinksComponent implements OnInit{
   @Input() genresList!: any[];
-  @Input() isTvGenre: boolean = false;
+  @Input() contentCategory!: ContentCategory;
   @Input() isLoading!: boolean;
+  
+  public title!: string;
 
+  public ngOnInit(): void {
+    this.title = `${this.contentCategory} Genres`;
+  }
   public getGenreLink(genre: any): string {
-    return this.isTvGenre ? `/genres/tv/${genre.id}/${genre.name}` : `/genres/movie/${genre.id}/${genre.name}`;
+    return `/genres/${this.contentCategory.toLowerCase()}/${genre.id}/${genre.name}`;
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, delay, of, switchMap } from 'rxjs';
+import { Observable, first, switchMap } from 'rxjs';
 import { ContentCategory } from 'src/app/enum/content-category.enum';
 import { MoviesService } from 'src/app/service/movie.service';
 import { TvService } from 'src/app/service/tv.service';
@@ -28,6 +28,7 @@ export class GenreComponent implements OnInit {
   public ngOnInit(): void {
     this._route.params
       .pipe(
+        first(),
         switchMap((params: Params) => {
           this.id = +params['id'];
           this.selectedGenre = params['name'];
