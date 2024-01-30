@@ -12,6 +12,6 @@ export class GenreLinksComponent {
   @Input() isLoading!: boolean;
 
   public getGenreLink(genre: any): string {
-    return this.isTvGenre ? `/genres-tv/${genre.id}/${genre.name}` : `/genres/${genre.id}/${genre.name}`;
+    return this.isTvGenre ? `/genres/tv/${genre.id}/${genre.name}` : `/genres/movie/${genre.id}/${genre.name}`;
   }
 }

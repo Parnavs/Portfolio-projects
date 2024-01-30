@@ -8,7 +8,7 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'genres/:id/:name',
+    path: 'genres/:content/:id/:name',
     loadChildren: () => import('./components/genre/genre.module').then(mod => mod.GenreModule)
   },
   {
