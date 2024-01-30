@@ -4,7 +4,7 @@
         <div class="col-md-12 text-center">
             <h2 class="mb-5 mt-5">{{ title }}</h2>
             <a *ngFor="let genre of genresList" [routerLink]="getGenreLink(genre)">
-                <button mat-raised-button color="primary" class="genre-card blue-theme" aria-label="Genres">
+                <button class="genre-card genre-button" aria-label="Genres">
                     {{genre.name}}
                 </button>
             </a>
