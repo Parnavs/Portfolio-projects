@@ -15,32 +15,30 @@ import { MoviesService } from 'src/app/service/movie.service';
   ]
 })
 export class SliderComponent {
-  current = 0;
-  movies_data: any;
-  tv_shows: any;
-
+  public current = 0;
+  public movieData: any;
 
   constructor(
     private movieService: MoviesService,
   ) { }
 
-  ngOnInit() {
-    this.getnowPlayingMovies(1);
+  public ngOnInit(): void {
+    this.getNowPlayingMovies(1);
     this.sliderTimer();
   }
 
-  getnowPlayingMovies(page: number) {
+  private getNowPlayingMovies(page: number): void {
     this.movieService.getNowPlaying(page)
     .pipe(delay(2000))
     .subscribe({
-      next: (res) => this.movies_data = res.results,
+      next: (res) => this.movieData = res.results,
       error: (err) => console.error(err)
     })
   }
 
-  sliderTimer() {
+  private sliderTimer(): void {
     setInterval(() => {
-      this.current = ++this.current % this.movies_data.length;
+      this.current = ++this.current % this.movieData.length;
     }, 5000);
   }
 }

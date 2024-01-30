@@ -9,6 +9,6 @@ export class CarouselListingComponent {
   @Input() title!: string;
   @Input() link!: string;
   @Input() items!: any[];
-  @Input() loader!: boolean;
+  @Input() isLoading!: boolean;
   @Input() responsiveOptions: any;
 }

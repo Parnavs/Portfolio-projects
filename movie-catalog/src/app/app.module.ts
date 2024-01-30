@@ -27,7 +27,7 @@ import { SliderComponent } from './components/slider/slider.component';
     HeaderComponent,
     FooterComponent,
     CarouselListingComponent,
-    SliderComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +41,7 @@ import { SliderComponent } from './components/slider/slider.component';
     SidebarModule,
     SkeletonModule,
     PipeModule,
-    MenubarModule
+    MenubarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,6 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription, forkJoin } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { CarouselResponsiveOptions } from 'primeng/carousel';
+import { forkJoin } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { MoviesService } from 'src/app/service/movie.service';
 import { TvService } from 'src/app/service/tv.service';
@@ -9,13 +10,11 @@ import { TvService } from 'src/app/service/tv.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
-  nowPlaying: any;
-  tvShows: any;
-  responsiveOptions;
-  loader = true;
-
-  private subscription: Subscription = new Subscription()
+export class HomeComponent implements OnInit {
+  public nowPlaying: any;
+  public tvShows: any;
+  public responsiveOptions: CarouselResponsiveOptions[];
+  public isLoading: boolean = true;
 
   constructor(
     private movies: MoviesService,
@@ -40,29 +39,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     ];
   }
   public ngOnInit(): void {
-    this.loadData();
+    this.initializeMovieAndTVShowData();
   }
 
-  private loadData(): void {
-    this.subscription.add(
-      forkJoin({
-        movies: this.movies.getNowPlaying(1).pipe(delay(2000)),
-        tvShows: this.tv.getTvOnTheAir(1).pipe(delay(2000))
-      }).subscribe({
-        next: (res) => {
-          this.nowPlaying = res.movies.results;
-          this.tvShows = res.tvShows.results;
-          this.loader = false;
-        },
-        error: (err) => {
-          console.error(err)
-          this.loader = false;
-        }
-      })
-    );
-  }
-
-  public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+  private initializeMovieAndTVShowData(): void {
+    forkJoin({
+      movies: this.movies.getNowPlaying(1).pipe(delay(2000)),
+      tvShows: this.tv.getTvOnTheAir(1).pipe(delay(2000))
+    }).subscribe({
+      next: (res) => {
+        this.nowPlaying = res.movies.results;
+        this.tvShows = res.tvShows.results;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error(err)
+        this.isLoading = false;
+      }
+    })
   }
 }
