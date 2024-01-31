@@ -7,10 +7,10 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   public leftSidebar: boolean = false;
-  navItems = [
+  public navItems = [
     { label: 'Home', link: '/', icon: 'pi pi-home' },
-    { label: 'Movies', link: '/movies', icon: 'pi pi-video' },
+    { label: 'Movies', link: '/movie', icon: 'pi pi-video' },
     { label: 'TV Shows', link: '/tv', icon: 'pi pi-desktop' },
-    { label: 'Genres', link: '/genres', icon: 'pi pi-list' }
+    { label: 'Genres', link: '/genre', icon: 'pi pi-list' }
   ];
 }

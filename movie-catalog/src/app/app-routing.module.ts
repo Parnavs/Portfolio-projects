@@ -8,12 +8,16 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'genres/:content/:id/:name',
+    path: 'genre/:content/:id/:name',
     loadChildren: () => import('./components/genre/genre.module').then(mod => mod.GenreModule)
   },
   {
-    path: 'genres',
+    path: 'genre',
     loadChildren: () => import('./components/genre-list/genre-list.module').then(mod => mod.GenreListModule)
+  },
+  {
+    path: ':content',
+    loadChildren: () => import('./components/content-page/content-page.module').then(mod => mod.ContentPageModule)
   },
 ];
 
