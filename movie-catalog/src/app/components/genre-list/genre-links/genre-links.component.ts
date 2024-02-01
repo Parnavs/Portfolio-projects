@@ -4,13 +4,13 @@ import { ContentCategory } from 'src/app/enum/content-category.enum';
 @Component({
   selector: 'app-genre-links',
   templateUrl: './genre-links.component.html',
-  styleUrl: './genre-links.component.scss'
+  styleUrl: './genre-links.component.scss',
 })
-export class GenreLinksComponent implements OnInit{
+export class GenreLinksComponent implements OnInit {
   @Input() genresList!: any[];
   @Input() contentCategory!: ContentCategory;
   @Input() isLoading!: boolean;
-  
+
   public title!: string;
 
   public ngOnInit(): void {

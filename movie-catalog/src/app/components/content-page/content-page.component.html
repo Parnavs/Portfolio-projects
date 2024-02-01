@@ -1,48 +1,83 @@
 <div class="listing">
-    <div class="listing__head">
-        <h3 class="listing__title">{{contentCategory === 'Movie' ? 'Movies' : 'TV Shows'}}</h3>
-    </div>
-    <form>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input type="text" class="form-control searchdesign" 
-                               placeholder="Search for movies or TV shows..." 
-                               [(ngModel)]="searchStr" name="searchStr" 
-                               (keyup)="onSearchChange(searchStr ?? '')">
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary btnDesign" type="button" 
-                                    (click)="searchContents(searchStr ?? '')">Go!</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>    
-    </form>
-
-    <ng-container *ngIf="!isLoading">
-        <div class="row">
-            <div class="col-md-2 listing__items" *ngFor="let content of contents | slice:0:18">
-                <div [routerLink]="['/detail/', contentCategory.toLowerCase(), content.id]">
-                    <div class="listing-item-style">
-                        <div class="overlay">
-                            <div class="hover"><i class="material-icons">play_arrow</i> PLAY NOW</div>
-                        </div>
-                        <img *ngIf="content?.poster_path" 
-                             src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{content?.poster_path}}"
-                             [alt]="content.title || content.name">
-                        <img *ngIf="!content?.poster_path" 
-                             src="assets/images/default-movie.png"
-                             [alt]="content.title || content.name">
-                        <h6>{{ content.title || content.name }}</h6>
-                        <p class="rate"><i class="material-icons">star</i><span>{{content?.vote_average}}</span> /10</p>
-                        <p class="year"><span>{{content?.release_date || content?.first_air_date | date: 'yyyy'}}</span></p>
-                    </div>
-                </div>
-            </div>
+  <div class="listing__head">
+    <h3 class="listing__title">
+      {{ contentCategory === "Movie" ? "Movies" : "TV Shows" }}
+    </h3>
+  </div>
+  <form>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control searchdesign"
+              placeholder="Search for movies or TV shows..."
+              [(ngModel)]="searchStr"
+              name="searchStr"
+              (keyup)="onSearchChange(searchStr ?? '')"
+            />
+            <span class="input-group-btn">
+              <button
+                class="btn btn-primary btnDesign"
+                type="button"
+                (click)="searchContents(searchStr ?? '')"
+              >
+                Go!
+              </button>
+            </span>
+          </div>
         </div>
-    </ng-container>
+      </div>
+    </div>
+  </form>
 
-    <mat-paginator [length]="totalResults" [pageSize]="20" (page)="changePage($event.pageIndex + 1)"></mat-paginator>
+  <ng-container *ngIf="!isLoading">
+    <div class="row">
+      <div
+        class="col-md-2 listing__items"
+        *ngFor="let content of contents | slice: 0 : 18"
+      >
+        <div
+          [routerLink]="['/detail/', contentCategory.toLowerCase(), content.id]"
+        >
+          <div class="listing-item-style">
+            <div class="overlay">
+              <div class="hover">
+                <i class="material-icons">play_arrow</i> PLAY NOW
+              </div>
+            </div>
+            <img
+              *ngIf="content?.poster_path"
+              src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{
+                content?.poster_path
+              }}"
+              [alt]="content.title || content.name"
+            />
+            <img
+              *ngIf="!content?.poster_path"
+              src="assets/images/default-movie.png"
+              [alt]="content.title || content.name"
+            />
+            <h6>{{ content.title || content.name }}</h6>
+            <p class="rate">
+              <i class="material-icons">star</i
+              ><span>{{ content?.vote_average }}</span> /10
+            </p>
+            <p class="year">
+              <span>{{
+                content?.release_date || content?.first_air_date | date: "yyyy"
+              }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <mat-paginator
+    [length]="totalResults"
+    [pageSize]="20"
+    (page)="changePage($event.pageIndex + 1)"
+  ></mat-paginator>
 </div>

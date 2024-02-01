@@ -1,4 +1,4 @@
-@import '../../../../assets/scss/variables';
+@import "../../../../assets/scss/variables";
 
 .genre-card {
   display: inline-block;
@@ -10,10 +10,9 @@
   font-weight: 200;
 }
 
-.mt_{
+.mt_ {
   margin: 10rem 5rem 10rem;
 }
-
 
 @media (min-width: $breakpoint-large) {
   .genre-card {
@@ -28,7 +27,8 @@
   transition: all 0.3s ease;
 }
 
-.genre-button:hover, .genre-button:focus {
-    background-color: #282f36;
-    outline: none;
+.genre-button:hover,
+.genre-button:focus {
+  background-color: #282f36;
+  outline: none;
 }

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MoviesService {
   public language: string;
@@ -20,35 +20,51 @@ export class MoviesService {
   }
 
   public getNowPlaying(page: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}movie/now_playing?api_key=${this.apiKey}&page=${page}&language=${this.language}&region=${this.region}`);
+    return this.http.get(
+      `${this.baseUrl}movie/now_playing?api_key=${this.apiKey}&page=${page}&language=${this.language}&region=${this.region}`,
+    );
   }
 
   public searchMovies(searchStr: string): Observable<any> {
-    return this.http.get(`${this.baseUrl}search/movie?api_key=${this.apiKey}&query=${searchStr}`);
+    return this.http.get(
+      `${this.baseUrl}search/movie?api_key=${this.apiKey}&query=${searchStr}`,
+    );
   }
 
   public getPopular(page: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}movie/popular?api_key=${this.apiKey}&page=${page}&language=${this.language}&region=${this.region}`);
+    return this.http.get(
+      `${this.baseUrl}movie/popular?api_key=${this.apiKey}&page=${page}&language=${this.language}&region=${this.region}`,
+    );
   }
 
   public getUpComingMovies(page: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}movie/upcoming?api_key=${this.apiKey}&page=${page}&language=${this.language}&region=${this.region}`);
+    return this.http.get(
+      `${this.baseUrl}movie/upcoming?api_key=${this.apiKey}&page=${page}&language=${this.language}&region=${this.region}`,
+    );
   }
 
   public getTopRatedMovies(page: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}movie/top_rated?api_key=${this.apiKey}&page=${page}&language=${this.language}&region=${this.region}`);
+    return this.http.get(
+      `${this.baseUrl}movie/top_rated?api_key=${this.apiKey}&page=${page}&language=${this.language}&region=${this.region}`,
+    );
   }
 
   public getDiscoverMovies(): Observable<any> {
-    return this.http.get(`${this.baseUrl}discover/movie?api_key=${this.apiKey}`);
+    return this.http.get(
+      `${this.baseUrl}discover/movie?api_key=${this.apiKey}`,
+    );
   }
 
   public getGenres(): Observable<any> {
-    return this.http.get(`${this.baseUrl}genre/movie/list?api_key=${this.apiKey}&language=${this.language}`);
+    return this.http.get(
+      `${this.baseUrl}genre/movie/list?api_key=${this.apiKey}&language=${this.language}`,
+    );
   }
 
   public getMoviesByGenre(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}genre/${id}/movies?api_key=${this.apiKey}`);
+    return this.http.get(
+      `${this.baseUrl}genre/${id}/movies?api_key=${this.apiKey}`,
+    );
   }
 
   public getMovie(id: string): Observable<any> {
@@ -56,23 +72,33 @@ export class MoviesService {
   }
 
   public getMovieReviews(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}movie/${id}/reviews?api_key=${this.apiKey}`);
+    return this.http.get(
+      `${this.baseUrl}movie/${id}/reviews?api_key=${this.apiKey}`,
+    );
   }
 
   public getMovieCredits(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}movie/${id}/credits?api_key=${this.apiKey}`);
+    return this.http.get(
+      `${this.baseUrl}movie/${id}/credits?api_key=${this.apiKey}`,
+    );
   }
 
   public getBackdropsImages(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}movie/${id}/images?api_key=${this.apiKey}`);
+    return this.http.get(
+      `${this.baseUrl}movie/${id}/images?api_key=${this.apiKey}`,
+    );
   }
 
   public getMovieVideos(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}movie/${id}/videos?api_key=${this.apiKey}`);
+    return this.http.get(
+      `${this.baseUrl}movie/${id}/videos?api_key=${this.apiKey}`,
+    );
   }
 
   public getRecomendMovies(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}movie/${id}/recommendations?api_key=${this.apiKey}`);
+    return this.http.get(
+      `${this.baseUrl}movie/${id}/recommendations?api_key=${this.apiKey}`,
+    );
   }
 
   public getPersonDetail(id: number): Observable<any> {
@@ -80,11 +106,14 @@ export class MoviesService {
   }
 
   public getPersonExternalData(id: number) {
-    return this.http.get(`${this.baseUrl}person/${id}/external_ids?api_key=${this.apiKey}`);
+    return this.http.get(
+      `${this.baseUrl}person/${id}/external_ids?api_key=${this.apiKey}`,
+    );
   }
 
   public getPersonCast(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}person/${id}/movie_credits?api_key=${this.apiKey}`);
+    return this.http.get(
+      `${this.baseUrl}person/${id}/movie_credits?api_key=${this.apiKey}`,
+    );
   }
-
 }

@@ -6,7 +6,6 @@
   }
 }
 
-
 .info__movies {
   display: flex;
   align-items: initial;
@@ -158,6 +157,6 @@
   margin-right: 9px;
 
   &:not(:last-child):after {
-    content: ',';
+    content: ",";
   }
 }

@@ -6,20 +6,14 @@ import { GenreListRoutingModule } from './genre-list-routing-module';
 import { GenreListComponent } from './genre-list.component';
 import { CommonModule } from '@angular/common';
 
-
 @NgModule({
-  declarations: [
-    GenreListComponent, 
-    GenreLinksComponent,
-],
+  declarations: [GenreListComponent, GenreLinksComponent],
   imports: [
     CommonModule,
     GenreListRoutingModule,
     MatButtonModule,
     SkeletonModule,
   ],
-  exports: [
-    GenreListComponent
-  ],
+  exports: [GenreListComponent],
 })
-export class GenreListModule { }
+export class GenreListModule {}

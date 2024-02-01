@@ -8,7 +8,7 @@ import { TvService } from 'src/app/service/tv.service';
 @Component({
   selector: 'app-genre-list',
   templateUrl: './genre-list.component.html',
-  styleUrl: './genre-list.component.scss'
+  styleUrl: './genre-list.component.scss',
 })
 export class GenreListComponent {
   public genreListMovies: any;
@@ -18,25 +18,24 @@ export class GenreListComponent {
 
   constructor(
     private _movieService: MoviesService,
-    private _tvService: TvService
-  ) { }
+    private _tvService: TvService,
+  ) {}
 
   public ngOnInit(): void {
     forkJoin({
       movies: this._movieService.getGenres().pipe(
-        catchError(err => {
+        catchError((err) => {
           console.error('Error fetching movie genres', err);
           return of([]);
-        })
+        }),
       ),
       tvShows: this._tvService.getGenres().pipe(
-        catchError(err => {
+        catchError((err) => {
           console.error('Error fetching TV genres', err);
           return of([]);
-        })
-      )
-    })
-    .subscribe({
+        }),
+      ),
+    }).subscribe({
       next: (results) => {
         this.genreListMovies = results.movies.genres;
         this.genreListTV = results.tvShows.genres;
@@ -45,7 +44,7 @@ export class GenreListComponent {
       error: (err) => {
         console.error('Error in forkJoin', err);
         this.isLoading = false;
-      }
+      },
     });
   }
 }

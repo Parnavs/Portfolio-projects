@@ -1,19 +1,21 @@
 <ng-container>
-    <app-slider></app-slider>
+  <app-slider></app-slider>
 </ng-container>
 
-<app-carousel-listing 
-    [title]="'Trending Movies'" 
-    [link]="'/movies'" 
-    [items]="nowPlaying" 
-    [isLoading]="isLoading" 
-    [responsiveOptions]="responsiveOptions">
+<app-carousel-listing
+  [title]="'Trending Movies'"
+  [link]="'/movies'"
+  [items]="nowPlaying"
+  [isLoading]="isLoading"
+  [responsiveOptions]="responsiveOptions"
+>
 </app-carousel-listing>
 
-<app-carousel-listing 
-    [title]="'Trending TV Shows'" 
-    [link]="'/tv'" 
-    [items]="tvShows" 
-    [isLoading]="isLoading" 
-    [responsiveOptions]="responsiveOptions">
+<app-carousel-listing
+  [title]="'Trending TV Shows'"
+  [link]="'/tv'"
+  [items]="tvShows"
+  [isLoading]="isLoading"
+  [responsiveOptions]="responsiveOptions"
+>
 </app-carousel-listing>

@@ -1,5 +1,4 @@
 export enum ContentCategory {
-    TV = "TV",
-    Movie = "Movie"
-  }
-  
+  TV = 'TV',
+  Movie = 'Movie',
+}

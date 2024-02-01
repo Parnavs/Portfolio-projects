@@ -1,31 +1,42 @@
 <div class="listing">
-    <div class="listing__head">
-        <h2 class="listing__title">{{ selectedContentCategory }} Genre: {{ selectedGenre }}</h2>
-    </div>
-    
-    <app-skeleton *ngIf="isLoading"></app-skeleton>
+  <div class="listing__head">
+    <h2 class="listing__title">
+      {{ selectedContentCategory }} Genre: {{ selectedGenre }}
+    </h2>
+  </div>
 
-    <div class="row" *ngIf="!isLoading">
-        <div class="col-md-2 listing__items" *ngFor="let genre of genreList; trackBy: trackByItemId">
-            <div [routerLink]="getDetailLink(genre)">
-                <div class="listing-item-style">
-                    <div class="overlay">
-                        <div class="hover"><i class="material-icons">play_arrow</i> PLAY NOW</div>
-                    </div>
-                    <img *ngIf="genre?.poster_path" 
-                         [src]="getMediaPosterUrl(genre.poster_path)" 
-                         [alt]="genre?.title || genre?.name">
+  <app-skeleton *ngIf="isLoading"></app-skeleton>
 
-                    <h6>{{ genre?.title || genre?.name }}</h6>
-                    <p class="rate">
-                        <i class="material-icons">star</i>
-                        <span>{{ genre?.vote_average }}</span> /10
-                    </p>
-                    <p class="year">
-                        <span>{{ (genre?.release_date || genre?.first_air_date) | date: 'yyyy' }}</span>
-                    </p>
-                </div>
+  <div class="row" *ngIf="!isLoading">
+    <div
+      class="col-md-2 listing__items"
+      *ngFor="let genre of genreList; trackBy: trackByItemId"
+    >
+      <div [routerLink]="getDetailLink(genre)">
+        <div class="listing-item-style">
+          <div class="overlay">
+            <div class="hover">
+              <i class="material-icons">play_arrow</i> PLAY NOW
             </div>
+          </div>
+          <img
+            *ngIf="genre?.poster_path"
+            [src]="getMediaPosterUrl(genre.poster_path)"
+            [alt]="genre?.title || genre?.name"
+          />
+
+          <h6>{{ genre?.title || genre?.name }}</h6>
+          <p class="rate">
+            <i class="material-icons">star</i>
+            <span>{{ genre?.vote_average }}</span> /10
+          </p>
+          <p class="year">
+            <span>{{
+              genre?.release_date || genre?.first_air_date | date: "yyyy"
+            }}</span>
+          </p>
         </div>
+      </div>
     </div>
+  </div>
 </div>

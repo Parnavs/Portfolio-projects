@@ -1,5 +1,4 @@
-@import './variables';
-
+@import "./variables";
 
 *,
 *:before,
@@ -17,7 +16,6 @@ body {
   background: $base-bg;
 }
 
-
 a {
   text-decoration: none !important;
   color: $anchor-font-color !important;
@@ -34,7 +32,6 @@ h6 {
   font-weight: 500;
 }
 
-
 p {
   font-family: $base-font-family;
   font-size: $base-font-size;
@@ -42,7 +39,6 @@ p {
   font-weight: 300;
   text-transform: none;
 }
-
 
 /**
 * Remove text-shadow in selection highlight:

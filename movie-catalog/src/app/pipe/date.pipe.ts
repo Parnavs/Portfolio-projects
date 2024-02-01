@@ -1,10 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'fullDate'
+  name: 'fullDate',
 })
 export class DatePipe implements PipeTransform {
-
   transform(value: string): string | null {
     if (!value) return null;
 
@@ -19,8 +18,20 @@ export class DatePipe implements PipeTransform {
   }
 
   private getMonthName(monthIndex: string): string {
-    const months = ['January', 'February', 'March', 'April', 'May', 'June', 
-                    'July', 'August', 'September', 'October', 'November', 'December'];
+    const months = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
     const index = parseInt(monthIndex, 10) - 1;
     return months[index] || 'Invalid month';
   }
@@ -28,5 +39,4 @@ export class DatePipe implements PipeTransform {
   private formatDay(day: string): string {
     return day.startsWith('0') ? day.substring(1) : day;
   }
-
 }

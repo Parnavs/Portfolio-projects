@@ -1,4 +1,4 @@
-import { IContentBase } from "./IContentBase.interface";
+import { IContentBase } from './IContentBase.interface';
 
 export interface ITV extends IContentBase {
   name: string;

@@ -1,4 +1,4 @@
-@import '../../../assets/scss/variables';
+@import "../../../assets/scss/variables";
 
 .navbar {
   position: relative;
@@ -30,23 +30,21 @@
     }
   }
 
-
   @media (max-width: $breakpoint-medium) {
     .listMenu {
       display: none;
     }
   }
-
 }
 
 .sidebar-nav-btn {
   display: none;
-  color:#fff;
+  color: #fff;
   background-color: #212121;
   border: none;
   position: absolute;
   right: 10px;
-  
+
   @media (max-width: $breakpoint-medium) {
     display: block;
     width: 35px;
@@ -55,45 +53,43 @@
   }
 }
 
-  .sidebar {
-    .p-sidebar .p-sidebar-active .p-sidebar-left {
-      background-color: #212121 !important;
-    }
-    
-    .sidebarNav {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      
-      
-      .menu-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-height: calc(100% - 60px);
-        width: 100%;
-        
-        .sidebarMenu {
-          margin: 10px 0;
-          position: relative;
-          
-          a {
-            font-size: 2rem;
-            letter-spacing: 0.4px;
-            color: black !important;
-            margin-left: 40px;
-          }
+.sidebar {
+  .p-sidebar .p-sidebar-active .p-sidebar-left {
+    background-color: #212121 !important;
+  }
 
-          img {
+  .sidebarNav {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    .menu-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: calc(100% - 60px);
+      width: 100%;
+
+      .sidebarMenu {
+        margin: 10px 0;
+        position: relative;
+
+        a {
+          font-size: 2rem;
+          letter-spacing: 0.4px;
+          color: black !important;
+          margin-left: 40px;
+        }
+
+        img {
           height: 25px;
           width: 25px;
           position: absolute;
-        }    
+        }
       }
     }
   }
 }
-
 
 .form {
   position: fixed;
@@ -102,13 +98,14 @@
   left: 0;
   z-index: 10;
 
-  input[type='text'], button {
+  input[type="text"],
+  button {
     background: none;
     border: 0;
     outline: 0;
   }
 
-  input[type='text'] {
+  input[type="text"] {
     flex: 1;
     height: 6rem;
     padding: 2.1rem 1.5rem;

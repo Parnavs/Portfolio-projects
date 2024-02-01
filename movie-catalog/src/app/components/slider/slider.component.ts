@@ -9,18 +9,19 @@ import { MoviesService } from 'src/app/service/movie.service';
   styleUrls: ['./slider.component.scss'],
   animations: [
     trigger('fade', [
-      transition(':enter', [style({ opacity: 0 }), animate('0.5s', style({ opacity: 1 }))]),
-      transition(':leave', [animate('0.5s', style({ opacity: 0 }))])
-    ])
-  ]
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('0.5s', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [animate('0.5s', style({ opacity: 0 }))]),
+    ]),
+  ],
 })
 export class SliderComponent {
   public current = 0;
   public movieData: any;
 
-  constructor(
-    private movieService: MoviesService,
-  ) { }
+  constructor(private movieService: MoviesService) {}
 
   public ngOnInit(): void {
     this.getNowPlayingMovies(1);
@@ -28,12 +29,13 @@ export class SliderComponent {
   }
 
   private getNowPlayingMovies(page: number): void {
-    this.movieService.getNowPlaying(page)
-    .pipe(delay(2000))
-    .subscribe({
-      next: (res) => this.movieData = res.results,
-      error: (err) => console.error(err)
-    })
+    this.movieService
+      .getNowPlaying(page)
+      .pipe(delay(2000))
+      .subscribe({
+        next: (res) => (this.movieData = res.results),
+        error: (err) => console.error(err),
+      });
   }
 
   private sliderTimer(): void {

@@ -1,23 +1,48 @@
 <div class="listing">
-    <div class="listing__head">
-        <h3 class="listing__title">{{ title }}</h3>
-        <a [routerLink]="[link]" routerLinkActive="router-link-active" class="listing__explore">
-            <strong>Explore All</strong>
-        </a>
-    </div>
-    <app-skeleton *ngIf="isLoading"></app-skeleton>
-    <p-carousel *ngIf="!isLoading" [value]="items" [numVisible]="6" [numScroll]="4" [circular]="false" [responsiveOptions]="responsiveOptions">
-        <ng-template let-item pTemplate="item">
-            <div class="listing-item-style" [routerLink]="[link, item.id]">
-                <div class="overlay">
-                    <div class="hover"><i class="material-icons">play_arrow</i> PLAY NOW</div>
-                </div>
-                <img *ngIf="item?.poster_path" src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{item?.poster_path}}">
-                <img *ngIf="!item?.poster_path" src="assets/images/default-movie.png">
-                <h6>{{ item?.title || item?.original_name }}</h6>
-                <p class="rate"><i class="material-icons">star</i><span>{{item?.vote_average}}</span> /10</p>
-                <p class="year"><span>{{item?.release_date || item?.first_air_date | date: 'yyyy'}}</span></p>
-            </div>
-        </ng-template>
-    </p-carousel>
+  <div class="listing__head">
+    <h3 class="listing__title">{{ title }}</h3>
+    <a
+      [routerLink]="[link]"
+      routerLinkActive="router-link-active"
+      class="listing__explore"
+    >
+      <strong>Explore All</strong>
+    </a>
+  </div>
+  <app-skeleton *ngIf="isLoading"></app-skeleton>
+  <p-carousel
+    *ngIf="!isLoading"
+    [value]="items"
+    [numVisible]="6"
+    [numScroll]="4"
+    [circular]="false"
+    [responsiveOptions]="responsiveOptions"
+  >
+    <ng-template let-item pTemplate="item">
+      <div class="listing-item-style" [routerLink]="[link, item.id]">
+        <div class="overlay">
+          <div class="hover">
+            <i class="material-icons">play_arrow</i> PLAY NOW
+          </div>
+        </div>
+        <img
+          *ngIf="item?.poster_path"
+          src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{
+            item?.poster_path
+          }}"
+        />
+        <img *ngIf="!item?.poster_path" src="assets/images/default-movie.png" />
+        <h6>{{ item?.title || item?.original_name }}</h6>
+        <p class="rate">
+          <i class="material-icons">star</i
+          ><span>{{ item?.vote_average }}</span> /10
+        </p>
+        <p class="year">
+          <span>{{
+            item?.release_date || item?.first_air_date | date: "yyyy"
+          }}</span>
+        </p>
+      </div>
+    </ng-template>
+  </p-carousel>
 </div>

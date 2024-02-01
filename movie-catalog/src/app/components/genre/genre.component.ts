@@ -8,7 +8,7 @@ import { TvService } from 'src/app/service/tv.service';
 @Component({
   selector: 'app-genre',
   templateUrl: './genre.component.html',
-  styleUrl: './genre.component.scss'
+  styleUrl: './genre.component.scss',
 })
 export class GenreComponent implements OnInit {
   public genreList: any[] = [];
@@ -17,13 +17,13 @@ export class GenreComponent implements OnInit {
   public isLoading: boolean = true;
 
   public ContentCategory = ContentCategory;
-  public selectedContentCategory!: ContentCategory
+  public selectedContentCategory!: ContentCategory;
 
   constructor(
     private _movieService: MoviesService,
     private _tvService: TvService,
-    private _route: ActivatedRoute
-  ) { }
+    private _route: ActivatedRoute,
+  ) {}
 
   public ngOnInit(): void {
     this._route.params
@@ -32,10 +32,15 @@ export class GenreComponent implements OnInit {
         switchMap((params: Params) => {
           this.id = +params['id'];
           this.selectedGenre = params['name'];
-          this.selectedContentCategory = this.formatContentCategory(params['content']);
+          this.selectedContentCategory = this.formatContentCategory(
+            params['content'],
+          );
 
-          return this.fetchContentByCategory(this.selectedContentCategory, this.id);
-        })
+          return this.fetchContentByCategory(
+            this.selectedContentCategory,
+            this.id,
+          );
+        }),
       )
       .subscribe({
         next: (res) => {
@@ -45,8 +50,8 @@ export class GenreComponent implements OnInit {
         error: (err) => {
           console.error(err);
           this.isLoading = false;
-        }
-      })
+        },
+      });
   }
 
   public getDetailLink(item: any): string {
@@ -68,7 +73,10 @@ export class GenreComponent implements OnInit {
     return item.id;
   }
 
-  private fetchContentByCategory(category: ContentCategory, id: number): Observable<any> {
+  private fetchContentByCategory(
+    category: ContentCategory,
+    id: number,
+  ): Observable<any> {
     switch (category) {
       case ContentCategory.Movie:
         return this._movieService.getMoviesByGenre(id);
@@ -81,13 +89,14 @@ export class GenreComponent implements OnInit {
 
   private formatContentCategory(category: string): ContentCategory {
     const matchingCategory = Object.values(ContentCategory).find(
-      contentCategory => category.toLowerCase() === contentCategory.toLowerCase()
+      (contentCategory) =>
+        category.toLowerCase() === contentCategory.toLowerCase(),
     );
-  
+
     if (!matchingCategory) {
       throw new Error('Invalid category');
     }
-  
+
     return matchingCategory;
   }
 }

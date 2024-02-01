@@ -7,7 +7,6 @@ import { PipeModule } from 'src/app/pipe/pipe.module';
 import { SkeletonModule } from 'src/app/shared/skeleton/skeleton.module';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-
 @NgModule({
   declarations: [GenreComponent],
   imports: [
@@ -15,7 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     GenreRoutingModule,
     PipeModule,
     SkeletonModule,
-    MatPaginatorModule
-  ]
+    MatPaginatorModule,
+  ],
 })
-export class GenreModule { }
+export class GenreModule {}

@@ -4,11 +4,8 @@ import { SkeletonComponent } from './skeleton.component';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    NgxSkeletonLoaderModule
-  ],
+  imports: [CommonModule, NgxSkeletonLoaderModule],
   declarations: [SkeletonComponent],
-  exports:[SkeletonComponent]
+  exports: [SkeletonComponent],
 })
-export class SkeletonModule { }
+export class SkeletonModule {}
