@@ -1,7 +1,6 @@
 <div class="listing">
     <div class="listing__head">
-        <h3 class="listing__title" *ngIf="!searchRes">{{contentCategory === 'Movie' ? 'Movies' : 'TV Shows'}}</h3>
-        <h3 class="listing__title" *ngIf="searchRes">Search Results</h3>
+        <h3 class="listing__title">{{contentCategory === 'Movie' ? 'Movies' : 'TV Shows'}}</h3>
     </div>
     <form>
         <div class="row">
@@ -22,10 +21,9 @@
         </div>    
     </form>
 
-    <ng-container *ngIf="searchRes || contents">
-        <app-skeleton *ngIf="isLoading"></app-skeleton>
-        <div class="row" *ngIf="!isLoading">
-            <div class="col-md-2 listing__items" *ngFor="let content of (searchRes || contents) | slice:0:18">
+    <ng-container *ngIf="!isLoading">
+        <div class="row">
+            <div class="col-md-2 listing__items" *ngFor="let content of contents | slice:0:18">
                 <div [routerLink]="['/detail/', contentCategory.toLowerCase(), content.id]">
                     <div class="listing-item-style">
                         <div class="overlay">
@@ -39,8 +37,7 @@
                              [alt]="content.title || content.name">
                         <h6>{{ content.title || content.name }}</h6>
                         <p class="rate"><i class="material-icons">star</i><span>{{content?.vote_average}}</span> /10</p>
-                        <p class="year"><span>{{content?.release_date || content?.first_air_date | date: 'yyyy'}}</span>
-                        </p>
+                        <p class="year"><span>{{content?.release_date || content?.first_air_date | date: 'yyyy'}}</span></p>
                     </div>
                 </div>
             </div>

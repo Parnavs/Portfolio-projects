@@ -1,10 +1,7 @@
-export interface IContent {
-    id: string;
-    name: string
-    title: string;
-    vote_average: number;
-    release_date: string;
-    poster_path: string;
-    first_air_date: string
-  }
-  
+import { IContentBase } from "./IContentBase.interface";
+
+export interface IMovie extends IContentBase {
+  title: string;
+  original_title: string;
+  release_date: string;
+}
