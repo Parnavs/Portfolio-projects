@@ -1,6 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Observable, Subject, debounceTime, switchMap } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  Subscription,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+} from 'rxjs';
 import { ContentCategory } from 'src/app/enum/content-category.enum';
 import { MoviesService } from 'src/app/service/movie.service';
 import { TvService } from 'src/app/service/tv.service';
@@ -10,28 +17,56 @@ import { TvService } from 'src/app/service/tv.service';
   templateUrl: './content-page.component.html',
   styleUrl: './content-page.component.scss',
 })
-export class ContentPageComponent implements OnInit {
+export class ContentPageComponent implements OnInit, OnDestroy {
   public contents!: any[];
   public isLoading = true;
   public totalResults!: number;
   public searchStr?: string;
-  private searchSubject = new Subject<string>();
   public contentCategory!: ContentCategory;
+
+  private currentPage: number = 1;
+  private searchSubject = new Subject<string>();
+  private subscription = new Subscription();
 
   constructor(
     private readonly movieService: MoviesService,
     private readonly tvService: TvService,
     private readonly route: ActivatedRoute,
-  ) {
-    this.searchSubject
-      .pipe(debounceTime(300))
-      .subscribe((searchString) => this.searchContents(searchString));
-  }
+  ) {}
 
   public ngOnInit(): void {
-    this.route.params
+    this.setupSearchSubscription();
+    this.setupRouteParamsSubscription();
+  }
+
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  public onSearchChange(searchString: string): void {
+    this.searchSubject.next(searchString);
+  }
+
+  private setupSearchSubscription(): void {
+    const searchSubscription = this.searchSubject
       .pipe(
-        switchMap((params: Params) => {
+        debounceTime(400),
+        switchMap((searchString) =>
+          this.setSearchedContents(searchString, this.currentPage),
+        ),
+      )
+      .subscribe({
+        next: (data) => this.handleData(data),
+        error: (err) => this.handleError(err),
+      });
+
+    this.subscription.add(searchSubscription);
+  }
+
+  private setupRouteParamsSubscription(): void {
+    const routeParamsSubscription = this.route.params
+      .pipe(
+        switchMap((params) => {
           this.handleReset();
           this.contentCategory = this.formatContentCategory(params['content']);
           return this.fetchData(this.contentCategory, '', 1);
@@ -41,18 +76,17 @@ export class ContentPageComponent implements OnInit {
         next: (data) => this.handleData(data),
         error: (err) => this.handleError(err),
       });
+
+    this.subscription.add(routeParamsSubscription);
   }
 
-  public searchContents(searchString: string): void {
+  private setSearchedContents(
+    searchString: string,
+    page: number = 1,
+  ): Observable<any> {
     this.isLoading = true;
-    this.fetchData(this.contentCategory, searchString, 1).subscribe({
-      next: (data) => this.handleData(data),
-      error: (err) => this.handleError(err),
-    });
-  }
 
-  public onSearchChange(searchString: string): void {
-    this.searchSubject.next(searchString);
+    return this.fetchData(this.contentCategory, searchString, page);
   }
 
   private fetchTopRated(
@@ -72,10 +106,8 @@ export class ContentPageComponent implements OnInit {
 
   public changePage(page: number): void {
     this.isLoading = true;
-    this.fetchData(this.contentCategory, this.searchStr ?? '', page).subscribe({
-      next: (data) => this.handleData(data),
-      error: (err) => this.handleError(err),
-    });
+    this.currentPage = page;
+    this.searchSubject.next(this.searchStr ?? '');
   }
 
   private formatContentCategory(category: string): ContentCategory {
@@ -125,5 +157,6 @@ export class ContentPageComponent implements OnInit {
 
   private handleReset(): void {
     this.searchStr = '';
+    this.currentPage = 1;
   }
 }
