@@ -26,6 +26,13 @@ const routes: Routes = [
         (mod) => mod.ContentPageModule,
       ),
   },
+  {
+    path: ':content/:id',
+    loadChildren: () =>
+      import('./components/content-details/content-details.module').then(
+        (mod) => mod.ContentDetailsModule,
+      ),
+  },
 ];
 
 @NgModule({

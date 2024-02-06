@@ -32,48 +32,53 @@
     </div>
   </form>
 
-  <ng-container *ngIf="!isLoading">
+  @if (!isLoading) {
     <div class="row">
-      <div
-        class="col-md-2 listing__items"
-        *ngFor="let content of contents | slice: 0 : 18"
-      >
-        <div
-          [routerLink]="['/detail/', contentCategory.toLowerCase(), content.id]"
-        >
-          <div class="listing-item-style">
-            <div class="overlay">
-              <div class="hover">
-                <i class="material-icons">play_arrow</i> PLAY NOW
+      @for (content of contents | slice: 0 : 18; track content) {
+        <div class="col-md-2 listing__items">
+          <div
+            [routerLink]="[
+              '/detail/',
+              contentCategory.toLowerCase(),
+              content.id
+            ]"
+          >
+            <div class="listing-item-style">
+              <div class="overlay">
+                <div class="hover">
+                  <i class="material-icons">play_arrow</i> PLAY NOW
+                </div>
               </div>
+              @if (content?.poster_path) {
+                <img
+                  src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{
+                    content.poster_path
+                  }}"
+                  [alt]="content.title || content.name"
+                />
+              } @else {
+                <img
+                  src="assets/images/default-movie.png"
+                  [alt]="content.title || content.name"
+                />
+              }
+              <h6>{{ content.title || content.name }}</h6>
+              <p class="rate">
+                <i class="material-icons">star</i
+                ><span>{{ content?.vote_average }}</span> /10
+              </p>
+              <p class="year">
+                <span>{{
+                  content?.release_date || content?.first_air_date
+                    | date: "yyyy"
+                }}</span>
+              </p>
             </div>
-            <img
-              *ngIf="content?.poster_path"
-              src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{
-                content?.poster_path
-              }}"
-              [alt]="content.title || content.name"
-            />
-            <img
-              *ngIf="!content?.poster_path"
-              src="assets/images/default-movie.png"
-              [alt]="content.title || content.name"
-            />
-            <h6>{{ content.title || content.name }}</h6>
-            <p class="rate">
-              <i class="material-icons">star</i
-              ><span>{{ content?.vote_average }}</span> /10
-            </p>
-            <p class="year">
-              <span>{{
-                content?.release_date || content?.first_air_date | date: "yyyy"
-              }}</span>
-            </p>
           </div>
         </div>
-      </div>
+      }
     </div>
-  </ng-container>
+  }
 
   <mat-paginator
     [length]="totalResults"
