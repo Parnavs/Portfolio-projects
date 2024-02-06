@@ -17,6 +17,6 @@ export class GenreLinksComponent implements OnInit {
     this.title = `${this.contentCategory} Genres`;
   }
   public getGenreLink(genre: any): string {
-    return `/genres/${this.contentCategory.toLowerCase()}/${genre.id}/${genre.name}`;
+    return `/genre/${this.contentCategory.toLowerCase()}/${genre.id}/${genre.name}`;
   }
 }

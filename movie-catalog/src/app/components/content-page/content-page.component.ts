@@ -5,8 +5,7 @@ import {
   Subject,
   Subscription,
   debounceTime,
-  distinctUntilChanged,
-  switchMap,
+    switchMap,
 } from 'rxjs';
 import { ContentCategory } from 'src/app/enum/content-category.enum';
 import { MoviesService } from 'src/app/service/movie.service';

@@ -1,13 +1,18 @@
 <div class="container-fluid mt-20 mb-20">
-  <app-skeleton *ngIf="isLoading"></app-skeleton>
-  <div class="row" *ngIf="!isLoading">
-    <div class="col-md-12 text-center">
-      <h2 class="mb-5 mt-5">{{ title }}</h2>
-      <a *ngFor="let genre of genresList" [routerLink]="getGenreLink(genre)">
-        <button class="genre-card genre-button" aria-label="Genres">
-          {{ genre.name }}
-        </button>
-      </a>
+  @if (isLoading) {
+    <app-skeleton></app-skeleton>
+  } @else {
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h2 class="mb-5 mt-5">{{ title }}</h2>
+        @for (genre of genresList; track genre) {
+          <a [routerLink]="getGenreLink(genre)">
+            <button class="genre-card genre-button" aria-label="Genres">
+              {{ genre.name }}
+            </button>
+          </a>
+        }
+      </div>
     </div>
-  </div>
+  }
 </div>
